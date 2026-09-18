@@ -4,9 +4,13 @@ const timerDisplay = document.getElementById("timer");
 const resultDisplay = document.getElementById("result");
 const restartBtn = document.getElementById("restart-btn");
 
+
 let dimension = 150;
 let imgStart = Math.floor(Math.random() * 100) + 1;
-
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+let MatchedCount = 0;
 
 const images = [];
 for(let i = imgStart; i < imgStart + 7; i++){
@@ -32,13 +36,55 @@ function initGame(){
         card.setAttribute("tabindex", "0");
         card.setAttribute("aria-label", "Carte retournée, cliquez pour révéler");
         card.dataset.value = imgURL;
+     
+        card.addEventListener('click', () => handleCardClick(card));
+
+        board.appendChild(card);
     });
 }
 
 
+function handleCardClick(card) {
+    if (lockBoard) return;                        
+    if (card === firstCard) return;                  
+    if (card.classList.contains('matched')) return;  
+
+    card.innerHTML = `<img src="${card.dataset.value}">`;
+
+    if (!firstCard) {
+        firstCard = card;
+        return;
+    }
+
+    secondCard = card;
+    lockBoard = true;
+    moves++;
+    checkMatch();
+}
+
 initGame();
 
+function checkMatch() {
+    const isMatch = firstCard.dataset.value === secondCard.dataset.value;
 
+    if (isMatch) {
+        firstCard.classList.add('matched');
+        secondCard.classList.add('matched');
+        resetTurn();
+    } else {
+        setTimeout(() => {
+            firstCard.innerHTML = '';
+            secondCard.innerHTML = '';
+            resetTurn();
+        }, 800);
+    }
+}
+
+function resetTurn() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+}
 
 
 
