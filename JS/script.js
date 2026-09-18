@@ -36,7 +36,7 @@ function initGame(){
 }
 
 
-
+initGame();
 
 
 
