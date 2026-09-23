@@ -1,21 +1,9 @@
-:root {
-    --background: #111827;
-    --surface: #1f2937;
-    --card: #374151;
-    --accent: #38bdf8;
-    --accent-light: #7dd3fc;
-    --success: #34d399;
-    --text: #f9fafb;
-    --text-muted: #9ca3af;
-    --shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-    --radius: 16px;
-}
-
 * {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     overflow: hidden;
 }
@@ -29,8 +17,8 @@ body {
     gap: 12px;
     padding: 12px;
     font-family: "Segoe UI", Arial, sans-serif;
-    color: var(--text);
-    background: radial-gradient(circle at top, #263b63 0%, var(--background) 65%);
+    color: #f9fafb;
+    background: #081225;
 }
 
 .hud {
@@ -44,8 +32,8 @@ body {
     padding: 10px 20px;
     background: rgba(31, 41, 55, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    border-radius: 16px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
 .hud h1 {
@@ -59,12 +47,12 @@ body {
 .hud p {
     margin: 0;
     font-size: 1rem;
-    color: var(--text-muted);
+    color: #9ca3af;
     white-space: nowrap;
 }
 
 .hud span {
-    color: var(--text);
+    color: #f9fafb;
     font-weight: 700;
 }
 
@@ -73,13 +61,13 @@ body {
     text-align: center;
     min-height: 1.4em;
     font-weight: 700;
-    color: var(--success);
+    color: #34d399;
     order: 3;
 }
 
 #restart-btn {
     margin-left: auto;
-    background: var(--accent);
+    background: #8700a1;
     color: #0b1220;
     border: none;
     padding: 10px 22px;
@@ -91,9 +79,9 @@ body {
 }
 
 #restart-btn:hover {
-    background: var(--accent-light);
+    background: rgb(255, 0, 255);
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(56, 189, 248, 0.35);
+    box-shadow: 0 8px 18px rgba(247, 0, 255, 0.35);
 }
 
 #restart-btn:active {
@@ -106,32 +94,31 @@ body {
     width: auto;
     max-width: min(92vw, 640px);
     aspect-ratio: 1 / 1;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 16px;
     padding: 24px;
     background: rgba(31, 41, 55, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    border-radius: 16px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
 .card {
     position: relative;
     aspect-ratio: 1 / 1;
-    width: 100%;
+    width: 22%;
     overflow: hidden;
     cursor: pointer;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius);
-    background: linear-gradient(135deg, var(--accent), #6366f1);
-    box-shadow: var(--shadow);
+    border: 3px solid rgba(214, 59, 214, 0.616);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgb(0, 0, 0), rgb(50, 50, 50));
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.3s ease;
 }
 
 .card::before {
-    content: "?";
     position: absolute;
     inset: 0;
     display: grid;
@@ -144,8 +131,8 @@ body {
 }
 
 .card:hover {
-    border-color: var(--accent-light);
-    box-shadow: 0 16px 30px rgba(56, 189, 248, 0.3);
+    border-color: rgb(247, 0, 255);
+    box-shadow: 0 16px 30px rgba(135, 0, 161, 0.3);
     transform: translateY(-5px) scale(1.03);
 }
 
@@ -155,7 +142,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: calc(var(--radius) - 3px);
+    border-radius: calc(16px - 3px);
     z-index: 1;
     transition: transform 0.25s ease;
 }
@@ -169,8 +156,8 @@ body {
 }
 
 .card.matched {
-    border-color: var(--success);
-    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.35), var(--shadow);
+    border-color: #34d399;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.35);
     cursor: default;
 }
 
