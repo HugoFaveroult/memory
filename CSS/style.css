@@ -89,14 +89,14 @@ body {
 }
 
 #game-board {
-    flex: 1 1 0;
+    flex: 0 1 auto;
     min-height: 0;
-    width: auto;
+    width: min(92vw, 640px);
     max-width: min(92vw, 640px);
     aspect-ratio: 1 / 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-block: auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px;
     padding: 24px;
     background: rgba(31, 41, 55, 0.72);
@@ -108,7 +108,8 @@ body {
 .card {
     position: relative;
     aspect-ratio: 1 / 1;
-    width: 22%;
+    width: 100%;
+    min-width: 0;
     overflow: hidden;
     cursor: pointer;
     border: 3px solid rgba(214, 59, 214, 0.616);
