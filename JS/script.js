@@ -5,7 +5,7 @@ const resultDisplay = document.getElementById("result");
 const restartBtn = document.getElementById("restart-btn");
 
 
-let dimension = 150;
+let dimension = 100;
 let imgStart = Math.floor(Math.random() * 100) + 1;
 let firstCard = null;
 let secondCard = null;
@@ -14,10 +14,11 @@ let matchedCount = 0;
 let seconds = 0;
 let moves = 0;
 let timerInterval = null;
+let gameStarted = false;
 
 
 const images = [];
-for(let i = imgStart; i < imgStart + 7; i++){
+for(let i = imgStart; i < imgStart + 8; i++){
     images.push(`https://picsum.photos/seed/${i}/${dimension}/${dimension}`);
 }
 let cards =[...images, ...images];
@@ -31,7 +32,7 @@ function shuffle(array) {
     }
 }
 
-function initGame(){
+function initGame(startGame = false){
     board.innerHTML = '';
     firstCard = null;
     secondCard = null;
@@ -44,6 +45,8 @@ function initGame(){
     movesDisplay.textContent = '0';
     timerDisplay.textContent = formatTime(seconds);
     resultDisplay.textContent = '';
+    gameStarted = startGame;
+    restartBtn.textContent = gameStarted ? 'Recommencer' : 'Jouer';
 
     shuffle(cards);
     cards.forEach((imgURL) => {
@@ -59,11 +62,14 @@ function initGame(){
         board.appendChild(card);
     });
 
-    startTimer();
+    if (gameStarted) {
+        startTimer();
+    }
 }
 
 
 function handleCardClick(card) {
+    if (!gameStarted) return;
     if (lockBoard) return;                        
     if (card === firstCard) return;                  
     if (card.classList.contains('matched')) return;  
@@ -80,8 +86,6 @@ function handleCardClick(card) {
     moves++;
     checkMatch();
 }
-
-initGame();
 
 function checkMatch() {
     const isMatch = firstCard.dataset.value === secondCard.dataset.value;
@@ -128,4 +132,7 @@ function checkVictory() {
     }
 }
 
+restartBtn.addEventListener('click', () => initGame(!gameStarted));
 
+
+initGame();
