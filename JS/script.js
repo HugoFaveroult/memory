@@ -89,7 +89,9 @@ function checkMatch() {
     if (isMatch) {
         firstCard.classList.add('matched');
         secondCard.classList.add('matched');
+        matchedCount += 2; 
         resetTurn();
+        checkVictory();
     } else {
         setTimeout(() => {
             firstCard.innerHTML = '';
