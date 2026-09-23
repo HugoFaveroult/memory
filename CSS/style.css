@@ -119,7 +119,7 @@ body {
 }
 
 .card::before {
-    content:'?';
+    content:"?";
     position: absolute;
     inset: 0;
     display: grid;
