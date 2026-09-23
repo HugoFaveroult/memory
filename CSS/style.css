@@ -119,11 +119,12 @@ body {
 }
 
 .card::before {
+    content:'?';
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    color: white;
+    color: rgb(121, 121, 121);
     font-size: clamp(1.6rem, 6vw, 3rem);
     font-weight: 700;
     opacity: 0.9;
